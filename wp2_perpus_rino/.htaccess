@@ -1,0 +1,24 @@
+
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteBase /wp2_perpus_rino
+	
+	RewriteRule ^css/(.*)$ assets/css$1 [L]
+	RewriteRule ^img/(.*)$ assets/img$1 [L]
+	RewriteRule ^js/(.*)$ assets/js$1 [L]
+	RewriteRule ^scss/(.*)$ assets/scss$1 [L]
+	RewriteRule ^vendor/(.*)$ assets/vendor$1 [L]
+
+	RewriteCond %{REQUEST_URI} ^system.*
+	RewriteRule ^(.*)$ /index.php/$1 [L]
+	
+	RewriteCond %{REQUEST_URI} ^application.*
+	RewriteRule ^(.*)$ /index.php?/$1 [L]
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)$ index.php?/$1 [L]
+	
+	RewriteCond $1 !^(index\.php|images|robots\.txt)
+	Options All -Indexes
+</IfModule>
